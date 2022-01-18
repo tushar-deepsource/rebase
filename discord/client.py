@@ -436,7 +436,8 @@ class Client:
         else:
             self._schedule_event(coro, method, *args, **kwargs)
 
-    async def on_error(self, event_method: str, *args: Any, **kwargs: Any) -> None:
+    @staticmethod
+    async def on_error(event_method: str, *args: Any, **kwargs: Any) -> None:
         """|coro|
 
         The default error handler provided by the client.
@@ -964,8 +965,7 @@ class Client:
         return list(self._connection._users.values())
 
     def get_channel(
-        self, id: int, /
-    ) -> Optional[Union[GuildChannel, Thread, PrivateChannel]]:
+        self, id: int, /) -> Optional[Union[GuildChannel, Thread, PrivateChannel]]:
         """Returns a channel or thread with the given ID.
 
         Parameters
@@ -1817,8 +1817,7 @@ class Client:
         return profile
 
     async def fetch_channel(
-        self, channel_id: int, /
-    ) -> Union[GuildChannel, PrivateChannel, Thread]:
+        self, channel_id: int, /) -> Union[GuildChannel, PrivateChannel, Thread]:
         """|coro|
 
         Retrieves a :class:`.abc.GuildChannel`, :class:`.abc.PrivateChannel`, or :class:`.Thread` with the specified ID.
@@ -1888,8 +1887,7 @@ class Client:
         return Webhook.from_state(data, state=self._connection)
 
     async def fetch_sticker(
-        self, sticker_id: int, /
-    ) -> Union[StandardSticker, GuildSticker]:
+        self, sticker_id: int, /) -> Union[StandardSticker, GuildSticker]:
         """|coro|
 
         Retrieves a :class:`.Sticker` with the specified ID.
