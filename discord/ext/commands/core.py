@@ -2211,6 +2211,7 @@ def is_owner() -> Callable[[T], T]:
     This check raises a special exception, :exc:`.NotOwner` that is derived
     from :exc:`.CheckFailure`.
     """
+
     async def predicate(ctx: Context) -> bool:
         if not await ctx.bot.is_owner(ctx.author):
             raise NotOwner("You do not own this bot.")
