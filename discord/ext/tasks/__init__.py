@@ -295,7 +295,6 @@ class Loop(Generic[LF]):
         \*\*kwargs
             The keyword arguments to use.
         """
-
         if self._injected is not None:
             args = (self._injected, *args)
 
@@ -321,7 +320,6 @@ class Loop(Generic[LF]):
         :class:`asyncio.Task`
             The task that has been created.
         """
-
         if self._task is not MISSING and not self._task.done():
             raise RuntimeError('Task is already launched and is not completed.')
 
@@ -407,7 +405,6 @@ class Loop(Generic[LF]):
         TypeError
             An exception passed is either not a class or not inherited from :class:`BaseException`.
         """
-
         for exc in exceptions:
             if not inspect.isclass(exc):
                 raise TypeError(f'{exc!r} must be a class.')
@@ -487,7 +484,6 @@ class Loop(Generic[LF]):
         TypeError
             The function was not a coroutine.
         """
-
         if not inspect.iscoroutinefunction(coro):
             raise TypeError(f'Expected coroutine function, received {coro.__class__.__name__!r}.')
 
@@ -515,7 +511,6 @@ class Loop(Generic[LF]):
         TypeError
             The function was not a coroutine.
         """
-
         if not inspect.iscoroutinefunction(coro):
             raise TypeError(f'Expected coroutine function, received {coro.__class__.__name__!r}.')
 
@@ -656,7 +651,6 @@ class Loop(Generic[LF]):
             An invalid value for the ``time`` parameter was passed, or the
             ``time`` parameter was passed in conjunction with relative time parameters.
         """
-
         if time is MISSING:
             seconds = seconds or 0
             minutes = minutes or 0

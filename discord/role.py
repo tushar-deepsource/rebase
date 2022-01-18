@@ -496,5 +496,4 @@ class Role(Hashable):
         HTTPException
             Deleting the role failed.
         """
-
         await self._state.http.delete_role(self.guild.id, self.id, reason=reason)

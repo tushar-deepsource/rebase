@@ -65,7 +65,6 @@ bot = Bot()
 @bot.command()
 async def colour(ctx):
     """Sends a message with our dropdown containing colours"""
-
     # Create the view containing our dropdown
     view = DropdownView()
 

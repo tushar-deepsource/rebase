@@ -104,7 +104,6 @@ class AssetMixin:
         :class:`int`
             The number of bytes written.
         """
-
         data = await self.read()
         if isinstance(fp, io.BufferedIOBase):
             written = fp.write(data)
@@ -384,7 +383,6 @@ class Asset(AssetMixin):
         :class:`Asset`
             The new updated asset.
         """
-
         if self._animated:
             if format not in VALID_ASSET_FORMATS:
                 raise InvalidArgument(f'format must be one of {VALID_ASSET_FORMATS}')
@@ -418,7 +416,6 @@ class Asset(AssetMixin):
         :class:`Asset`
             The new updated asset.
         """
-
         if self._animated:
             return self
         return self.with_format(format)

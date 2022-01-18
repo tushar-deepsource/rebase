@@ -306,7 +306,6 @@ class Attachment(Hashable):
         :class:`File`
             The attachment as a file suitable for sending.
         """
-
         data = await self.read(use_cached=use_cached)
         return File(io.BytesIO(data), filename=self.filename, spoiler=spoiler)
 
@@ -968,7 +967,6 @@ class Message(Hashable):
             or remove markdown then use :func:`utils.escape_markdown` or :func:`utils.remove_markdown`
             respectively, along with this function.
         """
-
         # fmt: off
         transformations = {
             re.escape(f'<#{channel.id}>'): '#' + channel.name
@@ -1046,7 +1044,6 @@ class Message(Hashable):
         this just returns the regular :attr:`Message.content`. Otherwise this
         returns an English message denoting the contents of the system message.
         """
-
         if self.type in {
             MessageType.default,
             MessageType.reply,
@@ -1292,7 +1289,6 @@ class Message(Hashable):
         ~discord.InvalidArgument
             You specified both ``embed`` and ``embeds``
         """
-
         payload: Dict[str, Any] = {}
         if content is not MISSING:
             if content is not None:
@@ -1354,7 +1350,6 @@ class Message(Hashable):
         HTTPException
             Publishing the message failed.
         """
-
         await self._state.http.publish_message(self.channel.id, self.id)
 
     async def pin(self, *, reason: Optional[str] = None) -> None:
@@ -1382,7 +1377,6 @@ class Message(Hashable):
             Pinning the message failed, probably due to the channel
             having more than 50 pinned messages.
         """
-
         await self._state.http.pin_message(self.channel.id, self.id, reason=reason)
         self.pinned = True
 
@@ -1410,7 +1404,6 @@ class Message(Hashable):
         HTTPException
             Unpinning the message failed.
         """
-
         await self._state.http.unpin_message(self.channel.id, self.id, reason=reason)
         self.pinned = False
 
@@ -1441,7 +1434,6 @@ class Message(Hashable):
         InvalidArgument
             The emoji parameter is invalid.
         """
-
         emoji = convert_emoji_reaction(emoji)
         await self._state.http.add_reaction(self.channel.id, self.id, emoji)
 
@@ -1476,7 +1468,6 @@ class Message(Hashable):
         InvalidArgument
             The emoji parameter is invalid.
         """
-
         emoji = convert_emoji_reaction(emoji)
 
         if member.id == self._state.self_id:
@@ -1511,7 +1502,6 @@ class Message(Hashable):
         InvalidArgument
             The emoji parameter is invalid.
         """
-
         emoji = convert_emoji_reaction(emoji)
         await self._state.http.clear_single_reaction(self.channel.id, self.id, emoji)
 
@@ -1601,7 +1591,6 @@ class Message(Hashable):
         :class:`.Message`
             The message that was sent.
         """
-
         return await self.channel.send(content, reference=self, **kwargs)
 
     def message_commands(
@@ -1695,7 +1684,6 @@ class Message(Hashable):
         :class:`~discord.MessageReference`
             The reference to this message.
         """
-
         return MessageReference.from_message(self, fail_if_not_exists=fail_if_not_exists)
 
     def to_message_reference_dict(self) -> MessageReferencePayload:
@@ -1818,7 +1806,6 @@ class PartialMessage(Hashable):
         :class:`Message`
             The full message.
         """
-
         data = await self._state.http.get_message(self.channel.id, self.id)
         return self._state.create_message(channel=self.channel, data=data)
 
@@ -1872,7 +1859,6 @@ class PartialMessage(Hashable):
         Optional[:class:`Message`]
             The message that was edited.
         """
-
         try:
             content = fields['content']
         except KeyError:

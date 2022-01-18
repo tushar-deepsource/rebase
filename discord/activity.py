@@ -521,7 +521,6 @@ class Streaming(BaseActivity):
         This corresponds to the ``large_image`` key of the :attr:`Streaming.assets`
         dictionary if it starts with ``twitch:``. Typically set by the Discord client.
         """
-
         try:
             name = self.assets['large_image']
         except KeyError:

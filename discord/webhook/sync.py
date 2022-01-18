@@ -450,7 +450,6 @@ class SyncWebhookMessage(Message):
         HTTPException
             Deleting the message failed.
         """
-
         if delay is not None:
             time.sleep(delay)
         self._state._webhook.delete_message(self.id)
@@ -881,7 +880,6 @@ class SyncWebhook(BaseWebhook):
         Optional[:class:`SyncWebhookMessage`]
             If ``wait`` is ``True`` then the message that was sent, otherwise ``None``.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 
@@ -945,7 +943,6 @@ class SyncWebhook(BaseWebhook):
         :class:`~discord.SyncWebhookMessage`
             The message asked for.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 
@@ -1009,7 +1006,6 @@ class SyncWebhook(BaseWebhook):
         InvalidArgument
             There was no token associated with this webhook.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 

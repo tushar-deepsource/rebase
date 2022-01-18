@@ -288,7 +288,6 @@ class Thread(Messageable, Hashable):
         Optional[:class:`CategoryChannel`]
             The parent channel's category.
         """
-
         parent = self.parent
         if parent is None:
             raise ClientException("Parent channel not found")
@@ -308,7 +307,6 @@ class Thread(Messageable, Hashable):
         Optional[:class:`int`]
             The parent channel's category ID.
         """
-
         parent = self.parent
         if parent is None:
             raise ClientException("Parent channel not found")
@@ -378,7 +376,6 @@ class Thread(Messageable, Hashable):
         :class:`~discord.Permissions`
             The resolved permissions for the member or role.
         """
-
         parent = self.parent
         if parent is None:
             raise ClientException("Parent channel not found")

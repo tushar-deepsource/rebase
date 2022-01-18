@@ -209,7 +209,6 @@ class Emoji(_EmojiTag, AssetMixin):
         HTTPException
             An error occurred deleting the emoji.
         """
-
         await self._state.http.delete_custom_emoji(self.guild.id, self.id, reason=reason)
 
     async def edit(self, *, name: str = MISSING, roles: List[Snowflake] = MISSING, reason: Optional[str] = None) -> Emoji:
@@ -244,7 +243,6 @@ class Emoji(_EmojiTag, AssetMixin):
         :class:`Emoji`
             The newly updated emoji.
         """
-
         payload = {}
         if name is not MISSING:
             payload['name'] = name

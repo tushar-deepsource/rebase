@@ -390,7 +390,6 @@ def find(predicate: Callable[[T], Any], seq: Iterable[T]) -> Optional[T]:
     seq: :class:`collections.abc.Iterable`
         The iterable to search through.
     """
-
     for element in seq:
         if predicate(element):
             return element
@@ -440,7 +439,6 @@ def get(iterable: Iterable[T], **attrs: Any) -> Optional[T]:
     \*\*attrs
         Keyword arguments that denote attributes to search with.
     """
-
     # global -> local
     _all = all
     attrget = attrgetter
@@ -777,7 +775,6 @@ def escape_markdown(text: str, *, as_needed: bool = False, ignore_links: bool = 
     :class:`str`
         The text with the markdown special characters escaped with a slash.
     """
-
     if not as_needed:
 
         def replacement(match):

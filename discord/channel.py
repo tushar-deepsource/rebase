@@ -342,7 +342,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
             The newly edited text channel. If the edit was only positional
             then ``None`` is returned instead.
         """
-
         payload = await self._edit(options, reason=reason)
         if payload is not None:
             # the payload will always be the proper channel payload
@@ -491,7 +490,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
         List[:class:`Webhook`]
             The webhooks for this channel.
         """
-
         from .webhook import Webhook
 
         data = await self._state.http.channel_webhooks(self.id)
@@ -529,7 +527,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
         :class:`Webhook`
             The created webhook.
         """
-
         from .webhook import Webhook
 
         if avatar is not None:
@@ -572,7 +569,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
         :class:`Webhook`
             The created webhook.
         """
-
         if not self.is_news():
             raise ClientException('The channel must be a news channel.')
 
@@ -602,7 +598,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
         :class:`PartialMessage`
             The partial message.
         """
-
         from .message import PartialMessage
 
         return PartialMessage(channel=self, id=message_id)
@@ -672,7 +667,6 @@ class TextChannel(discord.abc.Messageable, discord.abc.GuildChannel, Hashable):
         :class:`Thread`
             The created thread
         """
-
         if type is None:
             type = ChannelType.private_thread
 
@@ -984,7 +978,6 @@ class VoiceChannel(VocalGuildChannel):
             The newly edited voice channel. If the edit was only positional
             then ``None`` is returned instead.
         """
-
         payload = await self._edit(options, reason=reason)
         if payload is not None:
             # the payload will always be the proper channel payload
@@ -1149,7 +1142,6 @@ class StageChannel(VocalGuildChannel):
         :class:`StageInstance`
             The newly created stage instance.
         """
-
         payload: Dict[str, Any] = {'channel_id': self.id, 'topic': topic}
 
         if privacy_level is not MISSING:
@@ -1257,7 +1249,6 @@ class StageChannel(VocalGuildChannel):
             The newly edited stage channel. If the edit was only positional
             then ``None`` is returned instead.
         """
-
         payload = await self._edit(options, reason=reason)
         if payload is not None:
             # the payload will always be the proper channel payload
@@ -1400,7 +1391,6 @@ class CategoryChannel(discord.abc.GuildChannel, Hashable):
             The newly edited category channel. If the edit was only positional
             then ``None`` is returned instead.
         """
-
         payload = await self._edit(options, reason=reason)
         if payload is not None:
             # the payload will always be the proper channel payload
@@ -1650,7 +1640,6 @@ class StoreChannel(discord.abc.GuildChannel, Hashable):
             The newly edited store channel. If the edit was only positional
             then ``None`` is returned instead.
         """
-
         payload = await self._edit(options, reason=reason)
         if payload is not None:
             # the payload will always be the proper channel payload
@@ -1781,7 +1770,6 @@ class DMChannel(discord.abc.Messageable, discord.abc.Connectable, Hashable):
         :class:`Permissions`
             The resolved permissions.
         """
-
         base = Permissions.text()
         base.read_messages = True
         base.send_tts_messages = False
@@ -1806,7 +1794,6 @@ class DMChannel(discord.abc.Messageable, discord.abc.Connectable, Hashable):
         :class:`PartialMessage`
             The partial message.
         """
-
         from .message import PartialMessage
 
         return PartialMessage(channel=self, id=message_id)
@@ -2183,7 +2170,6 @@ class PartialMessageable(discord.abc.Messageable, Hashable):
         :class:`PartialMessage`
             The partial message.
         """
-
         from .message import PartialMessage
 
         return PartialMessage(channel=self, id=message_id)

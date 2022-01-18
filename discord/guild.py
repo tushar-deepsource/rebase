@@ -977,7 +977,6 @@ class Guild(Hashable):
             The member in this guild with the associated name. If not found
             then ``None`` is returned.
         """
-
         members = self.members
 
         if len(name) > 5 and name[-5] == '#':
@@ -1113,7 +1112,6 @@ class Guild(Hashable):
         :class:`TextChannel`
             The channel that was just created.
         """
-
         options = {}
         if position is not MISSING:
             options['position'] = position
@@ -1273,7 +1271,6 @@ class Guild(Hashable):
         :class:`StageChannel`
             The channel that was just created.
         """
-
         options: Dict[str, Any] = {
             'topic': topic,
         }
@@ -1365,7 +1362,6 @@ class Guild(Hashable):
         Forbidden
             You do not have permissions to delete the guild.
         """
-
         await self._state.http.delete_guild(self.id)
 
     async def edit(

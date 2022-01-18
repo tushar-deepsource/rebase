@@ -446,7 +446,6 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         func
             The function that will be used as a check.
         """
-
         self.checks.append(func)
 
     def remove_check(self, func: Check) -> None:
@@ -462,7 +461,6 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         func
             The function to remove from the checks.
         """
-
         try:
             self.checks.remove(func)
         except ValueError:
@@ -726,7 +724,6 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         For example, in ``?one two three`` the qualified name would be
         ``one two three``.
         """
-
         parent = self.full_parent_name
         if parent:
             return parent + " " + self.name
@@ -974,7 +971,6 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         TypeError
             The coroutine passed is not actually a coroutine.
         """
-
         if not asyncio.iscoroutinefunction(coro):
             raise TypeError("The error handler must be a coroutine.")
 
@@ -1156,7 +1152,6 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         :class:`bool`
             A boolean indicating if the command can be invoked.
         """
-
         if not self.enabled:
             raise DisabledCommand(f"{self.name} command is disabled")
 
@@ -1240,7 +1235,6 @@ class GroupMixin(Generic[CogT]):
         TypeError
             If the command passed is not a subclass of :class:`.Command`.
         """
-
         if not isinstance(command, Command):
             raise TypeError("The command passed must be a subclass of Command")
 
@@ -1330,7 +1324,6 @@ class GroupMixin(Generic[CogT]):
         Optional[:class:`Command`]
             The command that was requested. If not found, returns ``None``.
         """
-
         # fast path, no space in name.
         if " " not in name:
             return self.all_commands.get(name)
@@ -1858,7 +1851,6 @@ def check_any(*checks: Check) -> Callable[[T], T]:
         async def only_for_owners(ctx):
             await ctx.send('Hello mister owner!')
     """
-
     unwrapped = []
     for wrapped in checks:
         try:
@@ -2070,7 +2062,6 @@ def has_permissions(**perms: bool) -> Callable[[T], T]:
             await ctx.send('You can manage messages.')
 
     """
-
     invalid = set(perms) - set(discord.Permissions.VALID_FLAGS)
     if invalid:
         raise TypeError(f"Invalid permission(s): {', '.join(invalid)}")
@@ -2098,7 +2089,6 @@ def bot_has_permissions(**perms: bool) -> Callable[[T], T]:
     This check raises a special exception, :exc:`.BotMissingPermissions`
     that is inherited from :exc:`.CheckFailure`.
     """
-
     invalid = set(perms) - set(discord.Permissions.VALID_FLAGS)
     if invalid:
         raise TypeError(f"Invalid permission(s): {', '.join(invalid)}")
@@ -2129,7 +2119,6 @@ def has_guild_permissions(**perms: bool) -> Callable[[T], T]:
 
     .. versionadded:: 1.3
     """
-
     invalid = set(perms) - set(discord.Permissions.VALID_FLAGS)
     if invalid:
         raise TypeError(f"Invalid permission(s): {', '.join(invalid)}")
@@ -2157,7 +2146,6 @@ def bot_has_guild_permissions(**perms: bool) -> Callable[[T], T]:
 
     .. versionadded:: 1.3
     """
-
     invalid = set(perms) - set(discord.Permissions.VALID_FLAGS)
     if invalid:
         raise TypeError(f"Invalid permission(s): {', '.join(invalid)}")
@@ -2224,7 +2212,6 @@ def is_owner() -> Callable[[T], T]:
     This check raises a special exception, :exc:`.NotOwner` that is derived
     from :exc:`.CheckFailure`.
     """
-
     async def predicate(ctx: Context) -> bool:
         if not await ctx.bot.is_owner(ctx.author):
             raise NotOwner("You do not own this bot.")
