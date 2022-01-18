@@ -521,7 +521,7 @@ class Client:
             usually when it isn't 200 or the known incorrect credentials
             passing status code.
         """
-        _log.info('Logging in using static token.')
+        _log.info("Logging in using static token.")
         state = self._connection
         data = await state.http.static_login(token.strip())
         state.analytics_token = data.get("analytics_token", "")
