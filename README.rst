@@ -1,22 +1,27 @@
-discord.py
-==========
+discord.py-self
+===============
 
-.. image:: https://discord.com/api/guilds/336642139381301249/embed.png
-   :target: https://discord.gg/r3sSKJJ
-   :alt: Discord server invite
-.. image:: https://img.shields.io/pypi/v/discord.py.svg
-   :target: https://pypi.python.org/pypi/discord.py
+.. image:: https://img.shields.io/pypi/v/discord.py-self.svg
+   :target: https://pypi.python.org/pypi/discord.py-self
    :alt: PyPI version info
-.. image:: https://img.shields.io/pypi/pyversions/discord.py.svg
-   :target: https://pypi.python.org/pypi/discord.py
+.. image:: https://img.shields.io/pypi/pyversions/discord.py-self.svg
+   :target: https://pypi.python.org/pypi/discord.py-self
    :alt: PyPI supported Python versions
 
-A modern, easy to use, feature-rich, and async ready API wrapper for Discord written in Python.
+A modern, easy to use, feature-rich, and async ready API wrapper for Discord's user API written in Python.
 
-The Future of discord.py
---------------------------
+Fork Changes
+------------
 
-Please read the `gist <https://gist.github.com/Rapptz/4a2f62751b9600a31a0d3c78100287f1>`_ for the future of this project. It's been a good one.
+This has been moved to the `website <https://dolfies.github.io/discord.py-self>`_.
+
+| **Credits:**
+| - `arandomnewaccount <https://www.reddit.com/user/obviouslymymain123/>`_ for Discord API help.
+| - `NoahCardoza <https://github.com/NoahCardoza/>`_ for the library `CaptchaHarvester <https://github.com/NoahCardoza/CaptchaHarvester/>`_, part of which is used here.
+|
+
+| **Note:**
+| Automating user accounts is against the Discord ToS. This library is a proof of concept and I do not recommend using it. Do so at your own risk.
 
 Key Features
 -------------
@@ -24,6 +29,7 @@ Key Features
 - Modern Pythonic API using ``async`` and ``await``.
 - Proper rate limit handling.
 - Optimised in both speed and memory.
+- Mostly compatible with the official ``discord.py``.
 
 Installing
 ----------
@@ -35,35 +41,38 @@ To install the library without full voice support, you can just run the followin
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U discord.py
+    python3 -m pip install -U discord.py-self
 
     # Windows
-    py -3 -m pip install -U discord.py
+    py -3 -m pip install -U discord.py-self
 
 Otherwise to get voice support you should run the following command:
 
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U "discord.py[voice]"
+    python3 -m pip install -U "discord.py-self[voice]"
 
     # Windows
-    py -3 -m pip install -U discord.py[voice]
+    py -3 -m pip install -U discord.py-self[voice]
 
 
-To install the development version, do the following:
+To install the development version, do the following (not recommended):
 
 .. code:: sh
 
-    $ git clone https://github.com/Rapptz/discord.py
-    $ cd discord.py
+    $ git clone --single-branch --branch rebase https://github.com/dolfies/discord.py-self
+    $ cd discord.py-self
     $ python3 -m pip install -U .[voice]
+
+
+The master branch (version 2.0) is not ready for use in *any* way. Do not use.
 
 
 Optional Packages
 ~~~~~~~~~~~~~~~~~~
 
-* `PyNaCl <https://pypi.org/project/PyNaCl/>`__ (for voice support)
+* PyNaCl (for voice support)
 
 Please note that on Linux installing voice you must install the following packages via your favourite package manager (e.g. ``apt``, ``dnf``, etc) before running the above commands:
 
@@ -77,15 +86,22 @@ Quick Example
 
     import discord
 
+    # Creating a new client instace by subclassing discord.Client
     class MyClient(discord.Client):
+
+        # This event is triggered when the selfbot has successfully logged in and has populated all of its internal data.
         async def on_ready(self):
             print('Logged on as', self.user)
 
+        # This event is triggered whenever a message is sent, in any server the selfbot is in.
         async def on_message(self, message):
-            # don't respond to ourselves
+
+            # The below condition checks if the author of the message is the same as the selfbot's owner, if so, it will return.
+            # This makes our selfbot ignore all messages sent by itself.
             if message.author == self.user:
                 return
 
+            # Whenever a message with the content 'ping' is sent, the selfbot will send the text 'pong' to the same channel.
             if message.content == 'ping':
                 await message.channel.send('pong')
 
@@ -94,17 +110,19 @@ Quick Example
 
 Bot Example
 ~~~~~~~~~~~~~
-
+The commands.Bot class is extremely versatile and provides similar functionality to the discord.Client class, though, it offers more features in terms of checks, support, decorators and more.
 .. code:: py
 
     import discord
     from discord.ext import commands
 
-    bot = commands.Bot(command_prefix='>')
+    # Creating a bot instance, the self_bot argument lets you choose who your selfbot responds to. If this is set to true, it will only respond to the account it is currently botting, if not, it'll respond to anyone.
+    bot = commands.Bot(command_prefix='>', self_bot=True)
 
+    # Discord.py-self's syntax is almost the same as the official library. To view a full list of changes, consider reading the fork documentation.
     @bot.command()
     async def ping(ctx):
-        await ctx.send('pong')
+        await ctx.reply('pong')
 
     bot.run('token')
 
@@ -113,6 +131,5 @@ You can find more examples in the examples directory.
 Links
 ------
 
-- `Documentation <https://discordpy.readthedocs.io/en/latest/index.html>`_
-- `Official Discord Server <https://discord.gg/r3sSKJJ>`_
-- `Discord API <https://discord.gg/discord-api>`_
+- `Official Documentation <https://discordpy.readthedocs.io/en/latest/index.html>`_
+- `Fork Documentation <https://dolfies.github.io/discord.py-self>`_
