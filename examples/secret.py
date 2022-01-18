@@ -48,7 +48,7 @@ async def text(ctx: commands.Context, name: str, *objects: typing.Union[discord.
     """This makes a text channel with a specified name 
     that is only visible to roles or members that are specified.
     """
-    
+
     overwrites = create_overwrites(ctx, *objects)
 
     await ctx.guild.create_text_channel(

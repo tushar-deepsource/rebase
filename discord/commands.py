@@ -189,7 +189,7 @@ class BaseCommand(ApplicationCommand):
     @property
     def target_channel(self) -> Optional[Messageable]:
         """Optional[:class:`Messageable`]: The channel this application command will be used on.
-    
+
         You can set this in order to use this command in a different channel without re-fetching it.
         """
         return self._channel
@@ -313,7 +313,7 @@ class UserCommand(BaseCommand):
     @property
     def target_user(self) -> Optional[Snowflake]:
         """Optional[:class:`Snowflake`]: The user this application command will be used on.
-    
+
         You can set this in order to use this command on a different user without re-fetching it.
         """
         return self._user
@@ -381,7 +381,7 @@ class MessageCommand(BaseCommand):
     @property
     def target_message(self) -> Optional[Message]:
         """Optional[:class:`Message`]: The message this application command will be used on.
-    
+
         You can set this in order to use this command on a different message without re-fetching it.
         """
         return self._message
