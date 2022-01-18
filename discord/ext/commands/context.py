@@ -275,7 +275,6 @@ class Context(discord.abc.Messageable, Generic[BotT]):
     @property
     def cog(self) -> Optional[Cog]:
         """Optional[:class:`.Cog`]: Returns the cog associated with this context's command. None if it does not exist."""
-
         if self.command is None:
             return None
         return self.command.cog

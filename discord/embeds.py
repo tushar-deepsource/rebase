@@ -357,7 +357,6 @@ class Embed:
         icon_url: :class:`str`
             The URL of the footer icon. Only HTTP(S) is supported.
         """
-
         self._footer = {}
         if text is not EmptyEmbed:
             self._footer['text'] = str(text)
@@ -411,7 +410,6 @@ class Embed:
         url: :class:`str`
             The source URL for the image. Only HTTP(S) is supported.
         """
-
         if url is EmptyEmbed:
             try:
                 del self._image
@@ -453,7 +451,6 @@ class Embed:
         url: :class:`str`
             The source URL for the thumbnail. Only HTTP(S) is supported.
         """
-
         if url is EmptyEmbed:
             try:
                 del self._thumbnail
@@ -515,7 +512,6 @@ class Embed:
         icon_url: :class:`str`
             The URL of the author icon. Only HTTP(S) is supported.
         """
-
         self._author = {
             'name': str(name),
         }
@@ -568,7 +564,6 @@ class Embed:
         inline: :class:`bool`
             Whether the field should be displayed inline.
         """
-
         field = {
             'inline': inline,
             'name': str(name),
@@ -601,7 +596,6 @@ class Embed:
         inline: :class:`bool`
             Whether the field should be displayed inline.
         """
-
         field = {
             'inline': inline,
             'name': str(name),
@@ -667,7 +661,6 @@ class Embed:
         IndexError
             An invalid index was provided.
         """
-
         try:
             field = self._fields[index]
         except (TypeError, IndexError, AttributeError):
@@ -680,7 +673,6 @@ class Embed:
 
     def to_dict(self) -> EmbedData:
         """Converts this embed object into a dict."""
-
         # add in the raw data into the dict
         # fmt: off
         result = {

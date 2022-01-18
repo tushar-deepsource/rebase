@@ -240,7 +240,6 @@ class BotBase(GroupMixin):
             If the function should only be called once per
             :meth:`.invoke` call.
         """
-
         if call_once:
             self._check_once.append(func)
         else:
@@ -335,7 +334,6 @@ class BotBase(GroupMixin):
         :class:`bool`
             Whether the user is the owner.
         """
-
         if self.owner_id:
             return user.id == self.owner_id
         elif self.owner_ids:
@@ -453,7 +451,6 @@ class BotBase(GroupMixin):
             The name of the event we want to remove. Defaults to
             ``func.__name__``.
         """
-
         name = func.__name__ if name is MISSING else name
 
         if name in self.extra_events:
@@ -529,7 +526,6 @@ class BotBase(GroupMixin):
         .ClientException
             A cog with the same name is already loaded.
         """
-
         if not isinstance(cog, Cog):
             raise TypeError('cogs must derive from Cog')
 
@@ -581,7 +577,6 @@ class BotBase(GroupMixin):
         Optional[:class:`.Cog`]
              The cog that was removed. ``None`` if not found.
         """
-
         cog = self.__cogs.pop(name, None)
         if cog is None:
             return
@@ -710,7 +705,6 @@ class BotBase(GroupMixin):
         ExtensionFailed
             The extension or its setup function had an execution error.
         """
-
         name = self._resolve_name(name, package)
         if name in self.__extensions:
             raise errors.ExtensionAlreadyLoaded(name)
@@ -753,7 +747,6 @@ class BotBase(GroupMixin):
         ExtensionNotLoaded
             The extension was not loaded.
         """
-
         name = self._resolve_name(name, package)
         lib = self.__extensions.get(name)
         if lib is None:
@@ -796,7 +789,6 @@ class BotBase(GroupMixin):
         ExtensionFailed
             The extension setup function had an execution error.
         """
-
         name = self._resolve_name(name, package)
         lib = self.__extensions.get(name)
         if lib is None:
@@ -920,7 +912,6 @@ class BotBase(GroupMixin):
             The invocation context. The type of this can change via the
             ``cls`` parameter.
         """
-
         view = StringView(message.content)
         ctx = cls(prefix=None, view=view, bot=self, message=message)
 

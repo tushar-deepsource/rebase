@@ -130,7 +130,6 @@ class Reaction:
         NotFound
             The user you specified, or the reaction's message was not found.
         """
-
         await self.message.remove_reaction(self.emoji, user)
 
     async def clear(self) -> None:
@@ -199,7 +198,6 @@ class Reaction:
             in a guild message context. Sometimes it can be a :class:`User`
             if the member has left the guild.
         """
-
         if not isinstance(self.emoji, str):
             emoji = f'{self.emoji.name}:{self.emoji.id}'
         else:

@@ -454,7 +454,6 @@ class Member(discord.abc.Messageable, discord.abc.Connectable, _UserTag):
 
         There is an alias for this named :attr:`color`.
         """
-
         roles = self.roles[1:]  # Remove @everyone
 
         # Highest role with a colour is the one that's rendered
@@ -611,7 +610,6 @@ class Member(discord.abc.Messageable, discord.abc.Connectable, _UserTag):
         This does take into consideration guild ownership and the
         administrator implication.
         """
-
         if self.guild.owner_id == self.id:
             return Permissions.all()
 
@@ -917,7 +915,6 @@ class Member(discord.abc.Messageable, discord.abc.Connectable, _UserTag):
         HTTPException
             Adding roles failed.
         """
-
         if not atomic:
             new_roles = utils._unique(Object(id=r.id) for s in (self.roles[1:], roles) for r in s)
             await self.edit(roles=new_roles, reason=reason)
@@ -956,7 +953,6 @@ class Member(discord.abc.Messageable, discord.abc.Connectable, _UserTag):
         HTTPException
             Removing the roles failed.
         """
-
         if not atomic:
             new_roles = [Object(id=r.id) for r in self.roles[1:]]  # remove @everyone
             for role in roles:

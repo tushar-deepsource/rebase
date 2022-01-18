@@ -469,7 +469,6 @@ class GuildChannel:
         :class:`~discord.PermissionOverwrite`
             The permission overwrites for this object.
         """
-
         if isinstance(obj, User):
             predicate = lambda p: p.is_member()
         elif isinstance(obj, Role):
@@ -573,7 +572,6 @@ class GuildChannel:
         :class:`~discord.Permissions`
             The resolved permissions for the member or role.
         """
-
         # The current cases can be explained as:
         # Guild owner get all permissions -- no questions asked
         # The @everyone role gets the first application
@@ -582,12 +580,9 @@ class GuildChannel:
         # After the role permissions are resolved, the member permissions
         # have to take into effect
         # After all that is done, you have to do the following:
-
         # If manage permissions is True, then all permissions are set to True
-
         # The operation first takes into consideration the denied
         # and then the allowed
-
         if self.guild.owner_id == obj.id:
             return Permissions.all()
 
@@ -787,7 +782,6 @@ class GuildChannel:
             The overwrite parameter invalid or the target type was not
             :class:`~discord.Role` or :class:`~discord.Member`.
         """
-
         http = self._state.http
 
         if isinstance(target, User):
@@ -976,7 +970,6 @@ class GuildChannel:
         HTTPException
             Moving the channel failed.
         """
-
         if not kwargs:
             return
 
@@ -1105,7 +1098,6 @@ class GuildChannel:
         :class:`~discord.Invite`
             The invite that was created.
         """
-
         data = await self._state.http.create_invite(
             self.id,
             reason=reason,
@@ -1138,7 +1130,6 @@ class GuildChannel:
         List[:class:`~discord.Invite`]
             The list of invites that are currently active.
         """
-
         state = self._state
         data = await state.http.invites_from_channel(self.id)
         guild = self.guild
@@ -1335,7 +1326,6 @@ class Messageable:
         :class:`~discord.Message`
             The message that was sent.
         """
-
         channel = await self._get_channel()
         state = self._state
         content = str(content) if content is not None else None
@@ -1446,7 +1436,6 @@ class Messageable:
 
         *Typing* indicator will go away after 10 seconds, or after a message is sent.
         """
-
         channel = await self._get_channel()
         await self._state.http.send_typing(channel.id)
 
@@ -1495,7 +1484,6 @@ class Messageable:
         :class:`~discord.Message`
             The message asked for.
         """
-
         channel = await self._get_channel()
         data = await self._state.http.get_message(channel.id, id)
         return self._state.create_message(channel=channel, data=data)
@@ -1534,7 +1522,6 @@ class Messageable:
         List[:class:`~discord.Message`]
             The messages that are currently pinned.
         """
-
         channel = await self._get_channel()
         state = self._state
         data = await state.http.pins_from(channel.id)
@@ -1750,7 +1737,6 @@ class Connectable(Protocol):
         :class:`~discord.VoiceProtocol`
             A voice client that is fully connected to the voice server.
         """
-
         key_id, _ = self._get_voice_client_key()
         state = self._state
         channel = await self._get_channel()

@@ -353,7 +353,6 @@ class HelpCommand:
         func
             The function that will be used as a check.
         """
-
         self._command_impl.add_check(func)
 
     def remove_check(self, func):
@@ -370,7 +369,6 @@ class HelpCommand:
         func
             The function to remove from the checks.
         """
-
         self._command_impl.remove_check(func)
 
     def get_bot_mapping(self):
@@ -414,7 +412,6 @@ class HelpCommand:
         :class:`str`
             The signature for the command.
         """
-
         parent = command.parent
         entries = []
         while parent is not None:
@@ -553,7 +550,6 @@ class HelpCommand:
         List[:class:`Command`]
             A list of commands that passed the filter.
         """
-
         if sort and key is None:
             key = lambda c: c.name
 
@@ -598,7 +594,6 @@ class HelpCommand:
         :class:`int`
             The maximum width of the commands.
         """
-
         as_lengths = (discord.utils._string_width(c.name) for c in commands)
         return max(as_lengths, default=0)
 
@@ -956,7 +951,6 @@ class DefaultHelpCommand(HelpCommand):
             If unspecified, calls :meth:`~HelpCommand.get_max_size` on the
             commands parameter.
         """
-
         if not commands:
             return
 
@@ -984,7 +978,6 @@ class DefaultHelpCommand(HelpCommand):
         command: :class:`Command`
             The command to format.
         """
-
         if command.description:
             self.paginator.add_line(command.description, empty=True)
 
@@ -1224,7 +1217,6 @@ class MinimalHelpCommand(HelpCommand):
         command: :class:`Command`
             The command to format.
         """
-
         if command.description:
             self.paginator.add_line(command.description, empty=True)
 

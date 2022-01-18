@@ -464,7 +464,6 @@ class Client:
             usually when it isn't 200 or the known incorrect credentials
             passing status code.
         """
-
         _log.info('Logging in using static token.')
 
         state = self._connection
@@ -496,7 +495,6 @@ class Client:
         :exc:`.ConnectionClosed`
             The websocket connection has been terminated.
         """
-
         backoff = ExponentialBackoff()
         ws_params = {
             'initial': True,
@@ -1029,7 +1027,6 @@ class Client:
         :class:`.abc.GuildChannel`
             A channel the client can 'access'.
         """
-
         for guild in self.guilds:
             yield from guild.channels
 
@@ -1146,7 +1143,6 @@ class Client:
             arguments that mirrors the parameters passed in the
             :ref:`event reference <discord-api-events>`.
         """
-
         future = self.loop.create_future()
         if check is None:
             def _check(*args):
@@ -1186,7 +1182,6 @@ class Client:
         TypeError
             The coroutine passed is not actually a coroutine.
         """
-
         if not asyncio.iscoroutinefunction(coro):
             raise TypeError('event registered must be a coroutine function')
 
@@ -1530,7 +1525,6 @@ class Client:
         :class:`.Invite`
             The invite from the URL/ID.
         """
-
         invite_id = utils.resolve_invite(url)
         data = await self.http.get_invite(invite_id, with_counts=with_counts, with_expiration=with_expiration)
         return Invite.from_incomplete(state=self._connection, data=data)
@@ -1557,7 +1551,6 @@ class Client:
         :exc:`.HTTPException`
             Revoking the invite failed.
         """
-
         invite_id = utils.resolve_invite(invite)
         await self.http.delete_invite(invite_id)
 
@@ -1585,7 +1578,6 @@ class Client:
             The guild joined. This is not the same guild that is
             added to cache.
         """
-
         if not isinstance(invite, Invite):
             invite = await self.fetch_invite(invite, with_counts=False, with_expiration=False)
 

@@ -641,7 +641,6 @@ class WebhookMessage(Message):
         HTTPException
             Deleting the message failed.
         """
-
         if delay is not None:
 
             async def inner_call(delay: float = delay):
@@ -1230,7 +1229,6 @@ class Webhook(BaseWebhook):
         Optional[:class:`WebhookMessage`]
             If ``wait`` is ``True`` then the message that was sent, otherwise ``None``.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 
@@ -1303,7 +1301,6 @@ class Webhook(BaseWebhook):
         :class:`~discord.WebhookMessage`
             The message asked for.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 
@@ -1382,7 +1379,6 @@ class Webhook(BaseWebhook):
         :class:`WebhookMessage`
             The newly edited webhook message.
         """
-
         if self.token is None:
             raise InvalidArgument('This webhook does not have a token associated with it')
 
