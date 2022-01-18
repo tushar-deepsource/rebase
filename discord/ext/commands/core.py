@@ -605,8 +605,9 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         # type-checker fails to narrow argument
         return await run_converters(ctx, converter, argument, param)  # type: ignore
 
+    @staticmethod
     async def _transform_greedy_pos(
-        self, ctx: Context, param: inspect.Parameter, required: bool, converter: Any
+        ctx: Context, param: inspect.Parameter, required: bool, converter: Any
     ) -> Any:
         view = ctx.view
         result = []
@@ -628,8 +629,9 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
             return param.default
         return result
 
+    @staticmethod
     async def _transform_greedy_var_pos(
-        self, ctx: Context, param: inspect.Parameter, converter: Any
+        ctx: Context, param: inspect.Parameter, converter: Any
     ) -> Any:
         view = ctx.view
         previous = view.index
@@ -1051,8 +1053,9 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
             return self.help.split("\n", 1)[0]
         return ""
 
+    @staticmethod
     def _is_typing_optional(
-        self, annotation: Union[T, Optional[T]]
+        annotation: Union[T, Optional[T]]
     ) -> TypeGuard[Optional[T]]:
         return getattr(annotation, "__origin__", None) is Union and type(None) in annotation.__args__  # type: ignore
 

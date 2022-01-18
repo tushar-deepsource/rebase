@@ -62,19 +62,23 @@ class _PartialTemplateState:
     def member_cache_flags(self):
         return self.__state.member_cache_flags
 
-    def store_emoji(self, guild, packet):
+    @staticmethod
+    def store_emoji(guild, packet):
         return None
 
-    def _get_voice_client(self, id):
+    @staticmethod
+    def _get_voice_client(id):
         return None
 
-    def _get_message(self, id):
+    @staticmethod
+    def _get_message(id):
         return None
 
     def _get_guild(self, id):
         return self.__state._get_guild(id)
 
-    async def query_members(self, **kwargs: Any):
+    @staticmethod
+    async def query_members(**kwargs: Any):
         return []
 
     def __getattr__(self, attr):
