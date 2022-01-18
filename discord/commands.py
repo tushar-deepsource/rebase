@@ -530,9 +530,8 @@ class SubCommand(SlashMixin):
         while True:
             if isinstance(parent, SlashCommand):
                 break
-            else:
-                yield parent
-                parent = parent.parent
+            yield parent
+            parent = parent.parent
 
     async def __call__(self, channel: Optional[Messageable] = None, /, **kwargs):
         r"""Use the sub command.
