@@ -721,9 +721,8 @@ def _command_factory(command_type: int) -> Tuple[CommandType, BaseCommand]:
     value = try_enum(CommandType, command_type)
     if value is CommandType.chat_input:
         return value, SlashCommand
-    elif value is CommandType.user:
+    if value is CommandType.user:
         return value, UserCommand
-    elif value is CommandType.message:
+    if value is CommandType.message:
         return value, MessageCommand
-    else:
-        return value, BaseCommand  # IDK about this
+    return value, BaseCommand  # IDK about this
