@@ -57,7 +57,6 @@ async def text(
     that is only visible to roles or members that are specified.
     """
     overwrites = create_overwrites(ctx, *objects)
-
     await ctx.guild.create_text_channel(
         name,
         overwrites=overwrites,
