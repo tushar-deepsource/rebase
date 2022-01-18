@@ -489,8 +489,7 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         """
         if self.cog is not None:
             return await self.callback(self.cog, context, *args, **kwargs)  # type: ignore
-        else:
-            return await self.callback(context, *args, **kwargs)  # type: ignore
+        return await self.callback(context, *args, **kwargs)  # type: ignore
 
     def _ensure_assignment_on_copy(self, other: CommandT) -> CommandT:
         other._before_invoke = self._before_invoke
@@ -526,8 +525,7 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
             kw.update(self.__original_kwargs__)
             copy = self.__class__(self.callback, **kw)
             return self._ensure_assignment_on_copy(copy)
-        else:
-            return self.copy()
+        return self.copy()
 
     async def dispatch_error(self, ctx: Context, error: Exception) -> None:
         ctx.command_failed = True
@@ -568,15 +566,14 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
                 return await self._transform_greedy_pos(
                     ctx, param, required, converter.converter
                 )
-            elif param.kind == param.VAR_POSITIONAL:
+            if param.kind == param.VAR_POSITIONAL:
                 return await self._transform_greedy_var_pos(
                     ctx, param, converter.converter
                 )
-            else:
-                # if we're here, then it's a KEYWORD_ONLY param type
-                # since this is mostly useless, we'll helpfully transform Greedy[X]
-                # into just X and do the parsing that way.
-                converter = converter.converter
+            # if we're here, then it's a KEYWORD_ONLY param type
+            # since this is mostly useless, we'll helpfully transform Greedy[X]
+            # into just X and do the parsing that way.
+            converter = converter.converter
 
         if view.eof:
             if param.kind == param.VAR_POSITIONAL:
@@ -602,8 +599,7 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
                 if self._is_typing_optional(param.annotation):
                     view.index = previous
                     return None
-                else:
-                    raise exc
+                raise exc
         view.previous = previous
 
         # type-checker fails to narrow argument
@@ -726,8 +722,7 @@ class Command(_BaseCommand, Generic[CogT, P, T]):
         parent = self.full_parent_name
         if parent:
             return parent + " " + self.name
-        else:
-            return self.name
+        return self.name
 
     def __str__(self) -> str:
         return self.qualified_name
