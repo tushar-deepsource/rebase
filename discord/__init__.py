@@ -8,13 +8,13 @@ A basic wrapper for the Discord user API.
 :license: MIT, see LICENSE for more details.
 
 """
-__title__ = 'discord.py-self'
-__author__ = 'Dolfies'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2015-present Rapptz'
-__version__ = '2.0.0a1'
+__title__ = "discord.py-self"
+__author__ = "Dolfies"
+__license__ = "MIT"
+__copyright__ = "Copyright 2015-present Rapptz"
+__version__ = "2.0.0a1"
 
-__path__ = __import__('pkgutil').extend_path(__path__, __name__)
+__path__ = __import__("pkgutil").extend_path(__path__, __name__)
 
 import logging
 from typing import NamedTuple, Literal
@@ -67,9 +67,12 @@ class _VersionInfo(NamedTuple):
     major: int
     minor: int
     micro: int
-    releaselevel: Literal['alpha', 'beta', 'candidate', 'final']
+    releaselevel: Literal["alpha", "beta", "candidate", "final"]
     serial: int
 
-version_info: _VersionInfo = _VersionInfo(major=2, minor=0, micro=0, releaselevel='alpha', serial=1)
+
+version_info: _VersionInfo = _VersionInfo(
+    major=2, minor=0, micro=0, releaselevel="alpha", serial=1
+)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
